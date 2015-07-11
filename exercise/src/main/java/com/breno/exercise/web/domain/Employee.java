@@ -1,25 +1,25 @@
-package com.breno.exercise;
+package com.breno.exercise.web.domain;
 
 public class Employee {
 
-	private String name;
-	private String surname;
+	private String fname;
+	private String lastname;
 	private String deptId;
 
 	public String getName() {
-		return name;
+		return fname;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFname(String fname) {
+		this.fname = fname;
 	}
 
 	public String getSurname() {
-		return surname;
+		return lastname;
 	}
 
-	public void setSurname(String surname) {
-		this.surname = surname;
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
 	}
 
 	public String getDeptId() {
