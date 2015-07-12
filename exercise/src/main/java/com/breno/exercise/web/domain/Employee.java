@@ -1,5 +1,9 @@
 package com.breno.exercise.web.domain;
 
+/**
+ * @author Breno
+ *
+ */
 public class Employee {
 
 	private String fname;

@@ -5,17 +5,18 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
-
 /**
  * @author Breno
  * 
- * Class to read and transform CSV files.
+ *         Class to read and transform CSV files.
  */
 @Service
 public class CsvReader implements ICsvReader {
@@ -23,7 +24,11 @@ public class CsvReader implements ICsvReader {
 	@Value("${delimiter}")
 	private String delimiter;
 
-	/* (non-Javadoc)
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.breno.exercise.ICsvReader#csvToJson(java.lang.String)
 	 */
 	public JsonArray csvToJson(String filePath) {
@@ -50,13 +55,14 @@ public class CsvReader implements ICsvReader {
 						json.addProperty(header[i], csv[i]);
 					}
 					jsonArray.add(json);
-					System.out.println(json.toString());
+					log.info("Record #" + (count - 1) + ": CVS to JSON "
+							+ json.toString());
 				}
 			}
 		} catch (FileNotFoundException e) {
-			System.out.println("File not Found. " + e.getMessage());
+			log.error("File not Found. " + e.getMessage());
 		} catch (IOException e) {
-			System.out.println("Error reading file. " + e.getMessage());
+			log.error("Error reading file. " + e.getMessage());
 		} finally {
 			if (br != null) {
 				try {
